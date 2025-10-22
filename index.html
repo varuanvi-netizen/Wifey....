@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday ANVI!</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe4e1, #fff0f5);
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #ff1493;
+      font-size: 3em;
+      animation: pulse 1.5s infinite;
+    }
+    img {
+      width: 250px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px #aaa;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday, ANVIIIII! 😘🎂</h1>
+  <img src="IMAGE.jpg" alt="Birthday Photo">
+  <p>WISHING YOUR NEXT 4 YEARS TO BE FILLED WITH JOY,LAUGHER AND LOVE!</p>
+
+  <!-- Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-happyrock.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script>
+    setInterval(() => {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }, 2000);
+  </script>
+
+
+  <!-- Surprise Popup -->
+  <script>
+    window.onload = () => {
+      setTimeout(() => {
+        alert("🎁 Surprise! You're amazing BABE..LOVE YOU,,Its not to impress you this is how I show  love 🙂 — Happy Birthday!");
+      }, 1500);
+    };
+
+
+  <!-- Quiz Game -->
+  <h2>💘 VARUN & ANVI Quiz Challenge</h2>
+  <div id="quiz-box">
+    <p id="quiz-question"></p>
+    <div id="quiz-options"></div>
+    <p id="quiz-feedback"></p>
+    <p id="quiz-score">Score: 0</p>
+  </div>
+
+  <script>
+    const quiz = [
+      {
+        question: "WHAT SMALL THING I DO THAT ALWAYS MAKE YOU FEEL LOVED?",
+        options: ["CARING", "ANNOY", "ROMANTIC", "ALL OF THE ABOVE"],
+        answer: [3]
+      },
+      {
+        question: "WHATS YOUR FAVORITE WAY WE SPEND TIME TOGETHER?",
+        options: ["LISTENING SONGS", "COOKING", "TRECKING", "SHARING TRASH TALKS", "NONE OF THE ABOVE"],
+        answer: [0,1,2,3,4]
+      },
+      {
+        question: "WHAT IS YOUR FAVORITE TYPE OF KISS ?",
+        options: ["ON THE NECK", "ON THE FOREHEAD", "ON THE LIPS", "ON CHEEKS"],
+        answer: [0,1,2]
+      },
+      {
+        question: "ANVI THINK WE R GOING ON A DATE WHERE WOULD YOU SUGGEST?",
+        options: ["BEACH", "HOTEL", "CAFE", "TEMPLE", "THEATRE"],
+        answer: [1,2,3]
+      },
+      {
+        question: "SO NEXT MEET AT 1-1-2029 RIGHT?",
+        options: ["YES", "NO"],
+        answer: [0]
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuiz() {
+      const q = quiz[current];
+      document.getElementById("quiz-question").textContent = q.question;
+      const optionsDiv = document.getElementById("quiz-options");
+      optionsDiv.innerHTML = "";
+      q.options.forEach((opt, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(i);
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correctAnswers = quiz[current].answer;
+      const feedback = document.getElementById("quiz-feedback");
+      if (correctAnswers.includes(selected)) {
+        score++;
+        feedback.textContent = "💖 Correct! LOVE YOU HONEY❤️";
+      } else {
+        feedback.textContent = "I KNOW , SIMPLY 😁 STILL LOVE YOU...!";
+      }
+      document.getElementById("quiz-score").textContent = "Score: " + score;
+      current++;
+      if (current < quiz.length) {
+        setTimeout(() => {
+          feedback.textContent = "";
+          loadQuiz();
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          document.getElementById("quiz-box").innerHTML = `<h3>🎉 Quiz Complete!</h3><p>Your final score: ${score}/${quiz.length}</p>`;
+        }, 1000);
+      }
+    }
+
+    loadQuiz();
+  </script>
+</body>
+</html>
